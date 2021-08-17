@@ -1,0 +1,58 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Sign up!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <!-- Name -->
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="userData.name"
+            placeholder="name"
+            type="text"
+            name="name"
+            required
+          />
+        </mat-form-field>
+        <!-- Email -->
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="userData.email"
+            type="email"
+            placeholder="Email"
+            name="Email"
+            required
+          />
+        </mat-form-field>
+        <!-- Username -->
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="userData.username"
+            placeholder="username"
+            type="text"
+            name="username"
+            required
+          />
+        </mat-form-field>
+        <!-- Password -->
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="userData.password"
+            type="password"
+            placeholder="password"
+            name="password"
+            required
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="registerUser()" color="primary">
+        Sign up
+      </button>
+    </mat-card-actions>
+  </mat-card>
