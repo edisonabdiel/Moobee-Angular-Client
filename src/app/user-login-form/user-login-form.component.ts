@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Server-side API calls
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -29,6 +30,10 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   loginUser(): void {
+
+    // this.router.navigate(['movies']);
+
+
     this.fetchApiData.userLogin(this.userData).subscribe(
       // Login successful.
       (response) => {
