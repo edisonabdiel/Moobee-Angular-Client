@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
-import { MovieDescriptionComponent } from '../movie-description/movie-description.component'; 
+import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 
@@ -44,35 +44,37 @@ export class UserFavoriteComponent implements OnInit {
   }
 
   // Open dialog to show movie description through MovieDescriptionComponent.
-  openDescriptionDialog(title: string, description: string): void {
+  openDescriptionDialog(Title: string, Description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
-      data: { title, description },
+      data: { Title, Description },
       width: '400px',
     });
   }
 
   // Open dialog to show movie genre through MovieGenreComponent.
-  openGenreDialog(movieTitle: any, movieGenres: any): void {
-    this.fetchApiData.getGenre().subscribe((genre: any) => {
+  openGenreDialog(Title: any, Genre: any): void {
+    this.fetchApiData.getGenre(Genre).subscribe((Genre: any) => {
       this.dialog.open(MovieGenreComponent, {
-        data: { movieTitle, genre },
+        data: { Title, Genre },
         width: '600px',
       });
     });
   }
 
+  
+
   // Open dialog to show movie director through MovieDirectorComponent.
-  openDirectorDialog(movieTitle: any, movieDirector: any): void {
-    this.fetchApiData.getDirector().subscribe((director: any) => {
+  openDirectorDialog(Title: any, Director: any): void {
+    this.fetchApiData.getDirector(Director).subscribe((Director: any) => {
       this.dialog.open(MovieDirectorComponent, {
-        data: { movieTitle, director },
+        data: { Title, Director },
         width: '600px',
       });
     });
   }
 
   // Add or remove movies from the Favorites list.
-  toggleFavoriteMovie(movieId: any, movieTitle: any): void {
+  toggleFavoriteMovie(movieId: any, Title: any): void {
     this.fetchApiData.getFavorites(this.username).subscribe((resp: any) => {
       const favoriteMovies = resp.favoriteMovies;
 
@@ -81,7 +83,7 @@ export class UserFavoriteComponent implements OnInit {
           .removeMovieFavorites(this.username, movieId)
           .subscribe(() => {
             this.snackBar.open(
-              `"${movieTitle}" was removed from your Favorites list!`,
+              `"${Title}" was removed from your Favorites list!`,
               'OK',
               {
                 duration: 3000,
@@ -93,7 +95,7 @@ export class UserFavoriteComponent implements OnInit {
           .addMovieFavorites(this.username, movieId)
           .subscribe(() => {
             this.snackBar.open(
-              `"${movieTitle}" was added to your Favorites list!`,
+              `"${Title}" was added to your Favorites list!`,
               'OK',
               {
                 duration: 3000,
